@@ -1,0 +1,390 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400);
+
+/*** BASE STYLES ***/
+:root {
+  /*** COLORS ***/
+  --app-background-color: #e8e6e6;
+  --main-color: #ff6900;
+  --main-color-dark: #e86100;
+  --main-color-light: #fff0e6;
+  --accent-color: #000;
+  --accent-color-light: #333232;
+  --error-color: #ff0000;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto, san-serif;
+  background-color: var(--app-background-color);
+}
+
+.container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.button {
+  border: none;
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+/*** FORM ***/
+.add-pizza-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 0.75rem;
+  width: 30vw;
+}
+
+.add-pizza-form__title {
+  font-size: 1.85rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.add-pizza-form__input,
+.add-pizza-form__select,
+.add-pizza-form__textarea {
+  padding: 0.65rem;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid #fff;
+  outline: none;
+}
+
+.add-pizza-form__input:focus,
+.add-pizza-form__select:focus,
+.add-pizza-form__textarea:focus {
+  border-color: var(--main-color);
+}
+
+.add-pizza-form__input,
+.add-pizza-form__select,
+.add-pizza-form__legend,
+.add-pizza-form__textarea {
+  margin: 0.25rem 0;
+}
+
+.add-pizza-form__name,
+.add-pizza-form__price,
+.add-pizza-form__heat,
+.add-pizza-form__toppings {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-pizza-form__textarea {
+  font-family: Roboto, san-serif;
+}
+
+.add-pizza-form__images {
+  display: flex;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  border: none;
+}
+
+.add-pizza-form__legend {
+  text-align: center;
+}
+
+.add-pizza-form__topping-container {
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.add-pizza-form__images-list {
+  list-style: none;
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+input[type="checkbox"][id^="pizza-image"] {
+  display: none;
+}
+
+.select-pizza-image-label {
+  border: 2px solid #fff;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.75rem;
+  line-height: 0;
+}
+
+.select-pizza-image-label:before {
+  color: #fff;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+.add-pizza-form__image {
+  height: 100px;
+  width: 100px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+.add-pizza-form__image:hover {
+  cursor: pointer;
+}
+
+:checked + .select-pizza-image-label {
+  border-color: var(--main-color);
+}
+
+:checked + .select-pizza-image-label::before {
+  content: "✓";
+  background-color: var(--main-color);
+  transform: scale(1);
+}
+
+:checked + .select-pizza-image-label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #808080;
+  z-index: -1;
+}
+
+.add-pizza-form__validation-error {
+  display: none;
+  color: var(--error-color);
+}
+
+.add-pizza-form__submit-button {
+  display: block;
+  margin: 0.5rem auto;
+  padding: 0.5rem 2rem;
+  font-size: 1.25rem;
+  color: #fff;
+  background-color: var(--main-color);
+}
+
+.add-pizza-form__submit-button:hover {
+  background-color: var(--main-color-dark);
+}
+
+.invalid {
+  border-color: var(--error-color);
+}
+
+/*** PIZZAS ***/
+.pizzas {
+  width: 90vw;
+  max-width: 1170px;
+  margin: 4rem auto 2rem;
+  display: none;
+}
+
+.pizzas__sort {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.85rem;
+}
+
+.pizzas__sort-select {
+  padding: 0.65rem;
+  margin-left: 0.35rem;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid #fff;
+  outline: none;
+}
+
+.pizzas__title {
+  font-size: 1.85rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.pizzas__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 2rem;
+  row-gap: 1.5rem;
+}
+
+.pizza-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.pizza-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.35rem;
+  background-color: #fff;
+  padding: 0.75rem;
+}
+
+.pizza-card__image {
+  height: 15vw;
+}
+
+.pizza-card__delete-button {
+  background-color: var(--main-color);
+  color: #fff;
+  padding: 0.325rem 0.75rem;
+  width: 40%;
+  margin-top: 0.5rem;
+}
+
+.pizza-card__delete-button:hover {
+  background-color: var(--main-color-dark);
+}
+
+/*** MODAL ***/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__title {
+  font-size: 1.35rem;
+}
+
+.modal__content {
+  display: flex;
+  row-gap: 0.5rem;
+  flex-direction: column;
+  background-color: #fff;
+  margin: auto;
+  padding: 1rem;
+  width: 30vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal__close {
+  color: #aaaaaa;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+}
+
+.modal__close:hover,
+.modal__close:focus {
+  color: var(--accent-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal__text {
+  margin: 0.5rem 0;
+}
+
+.modal__title,
+.modal__text {
+  text-align: center;
+}
+
+.modal__buttons {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.modal__delete-button,
+.modal__cancel-button {
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+.modal__delete-button {
+  background-color: var(--main-color);
+}
+
+.modal__delete-button:hover {
+  background-color: var(--main-color-dark);
+}
+
+.modal__cancel-button {
+  background-color: var(--accent-color);
+}
+
+.modal__cancel-button:hover {
+  background-color: var(--accent-color-light);
+}
+
+/*** RESPONSIVE ***/
+@media screen and (max-width: 1034px) {
+  .modal__content {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 847px) {
+  .add-pizza-form {
+    width: 80vw;
+  }
+
+  .pizzas__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pizza-card__image {
+    height: 20vw;
+  }
+}
+
+@media screen and (max-width: 1034px) {
+  .modal__content {
+    width: 70vw;
+  }
+}
+
+@media screen and (max-width: 385px) {
+  .pizzas__list {
+    grid-template-columns: 1fr;
+  }
+
+  .pizza-card__image {
+    height: 30vw;
+  }
+}
